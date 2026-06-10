@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Registration | TaskFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fbf9fb;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "on-tertiary-fixed-variant": "#5b4217",
+                        "on-tertiary-fixed": "#281900",
+                        "tertiary": "#211400",
+                        "inverse-on-surface": "#f2f0f3",
+                        "primary-container": "#1a2b48",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary": "#505f76",
+                        "on-tertiary-container": "#ad8d5b",
+                        "surface": "#fbf9fb",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e9e7ea",
+                        "on-primary-fixed-variant": "#374765",
+                        "on-primary-container": "#8293b5",
+                        "surface-variant": "#e4e2e5",
+                        "inverse-surface": "#303033",
+                        "surface-container": "#efedf0",
+                        "tertiary-fixed-dim": "#e5c18a",
+                        "surface-dim": "#dbd9dc",
+                        "primary": "#031632",
+                        "background": "#fbf9fb",
+                        "surface-bright": "#fbf9fb",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface": "#1b1b1e",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#081b38",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#3c2700",
+                        "inverse-primary": "#b6c7eb",
+                        "outline-variant": "#c5c6ce",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#44474d",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-background": "#1b1b1e",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-tint": "#4e5f7e",
+                        "primary-fixed": "#d7e2ff",
+                        "outline": "#75777e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container-highest": "#e4e2e5",
+                        "surface-container-low": "#f5f3f6",
+                        "tertiary-fixed": "#ffdead"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "3xl": "64px",
+                        "2xl": "48px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface custom-scrollbar overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 shadow-sm bg-surface sticky top-0 z-50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">flowsheet</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">TaskFlow</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Courses</a>
+<a class="font-label-md text-label-md text-primary font-bold bg-primary-container text-on-primary-container px-3 py-2 rounded-lg" href="#">Registration</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors duration-200 px-3 py-2 rounded-lg" href="#">Attendance</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-low rounded-full">notifications</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7upP7M953NmDUNh6kqzhor0ZcN8F0GXWQvVRy5nr7tTgCi1nxI4xnM2-CRueOppPGxdIf3dU4TICEv8n3TiDlAlEhO3HMsWlgMa04JdqYJI3pqHFQWI_EtVz2jwIGTdqUWtAkH1IaIZCAl_KDfH_7RcNJYL-uqklEVGGnx7sDUnrXPYEaOFypMcCLgLPain8-ZNSm3rbmWh0M6AJz6V0pZwVeWPRLxdupNyfs86L_hivkIUPyI-FzyOXR_GoXDQp761omyrhxO0Y"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-margin-desktop py-lg grid grid-cols-12 gap-gutter min-h-[calc(100vh-64px)]">
+<!-- Left Column: Filters -->
+<aside class="col-span-3 space-y-lg sticky top-24 self-start">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-sm text-headline-sm text-primary">Search Filters</h2>
+<button class="font-label-sm text-label-sm text-primary hover:underline">Clear all</button>
+</div>
+<!-- Search Bar -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-sm text-body-sm" placeholder="Course code or name..." type="text"/>
+</div>
+<!-- Filter Sections -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant shadow-sm space-y-lg">
+<!-- Department -->
+<div>
+<h3 class="font-label-md text-label-md text-primary mb-3">Department</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Computer Science</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Business &amp; Econ</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Design Studies</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Mathematics</span>
+</label>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<!-- Credits -->
+<div>
+<h3 class="font-label-md text-label-md text-primary mb-3">Credits</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-outline-variant font-label-sm text-label-sm hover:border-primary hover:text-primary transition-all">2 Units</button>
+<button class="px-4 py-2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm transition-all shadow-md">4 Units</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-label-sm text-label-sm hover:border-primary hover:text-primary transition-all">6 Units</button>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<!-- Level -->
+<div>
+<h3 class="font-label-md text-label-md text-primary mb-3">Course Level</h3>
+<div class="space-y-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="level" type="radio"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Introductory (100)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary" name="level" type="radio"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Intermediate (200-300)</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="w-4 h-4 text-primary focus:ring-primary" name="level" type="radio"/>
+<span class="font-body-sm text-body-sm text-on-surface-variant group-hover:text-primary">Advanced (400+)</span>
+</label>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Column: Course List -->
+<section class="col-span-6 space-y-lg">
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline-md text-headline-md text-primary">Available Courses <span class="font-body-sm text-body-sm text-outline font-normal ml-2">(24 found)</span></h2>
+<div class="flex gap-2">
+<button class="p-2 border border-outline-variant rounded-lg hover:bg-surface-container-low"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-2 bg-primary text-on-primary rounded-lg"><span class="material-symbols-outlined">view_list</span></button>
+</div>
+</div>
+<!-- Course Card Expanded 1 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+<div class="p-lg">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container font-label-sm text-label-sm rounded uppercase tracking-wider">CS-302</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-outline"><span class="material-symbols-outlined text-[14px]">star</span> 4.8 (120 reviews)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-primary-container transition-colors">Advanced Human-Computer Interaction</h3>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm text-primary">4 Units</p>
+<p class="font-label-sm text-label-sm text-outline">Semester A</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 leading-relaxed">
+                        Explores the design, evaluation, and implementation of interactive computing systems for human use. Focuses on advanced UI patterns, accessibility standards, and ethnographic research in digital product design.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg">
+<img alt="Professor Vogel" class="w-10 h-10 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSaTRAhT97AFsraPpPSpPMW9mLsHoey2u6drHtbqbBKeRMBFukzck-rEOGwA-kmYyJU7R6v0ZzMyaG6GURBSUpeO8JH9mZAdc0wvBJfktzBNaMZ0cJTV3-VNxwjD5R5QMjJ2jRipFiih4RqMhVImiT6WN5ljR0_iK6MIHWlE-nZnZ9L8aO1VRh1fw9X65ieki9PVh1W5nGK6b-A-flh5jtNo-NbSzdvG9vyWRV7gJNVkXO8Bq2SeaY_V8mUBGTty6Jlp8gKobJrzs"/>
+<div>
+<p class="font-label-md text-label-md text-primary">Dr. Marcus Vogel</p>
+<p class="font-label-sm text-label-sm text-outline">Humanities Dept Lead</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Eng. Hall R-402</p>
+<p class="font-label-sm text-label-sm text-outline">Tue/Thu 14:00 - 15:30</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex -space-x-2">
+<img alt="Student" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP6Ch38uiVZ8oTYWukj01uq2VSLp-Zyy_TJZtMZ2airir9wvkrr5Ua40RkqilaCps0JfUESF-dZMM-HiUWQjhlrb4ea1fBVhCRaMrMONUNww3G7oCYqb2rdwtYScLntvTrxSDsBnqVabD-nU68J-EgFRpEMUIeIZE7aWr1hWthQIURdzSFxJcCpx4xz7NMAO3uiyZlfKESCgSflavnNey6cDPgEh9WlGON2YXRy6yFqoMZEcS-Q8cAShFmQuiSZi9wK85erLGkRUg"/>
+<img alt="Student" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjeWnE402ZIR7F8lMdmTrEoI93OzfIpyKvQWCtg_BPMQxczs6OXI9MFwhrMyDFOYh3rWy_s-3ONoEHeYMJnfELKhtzogJPL2ywwzFQZHEYUojumEqLrQgenz_RR1wxUBGjKSSuGoHceVzIvBW3OPzHelGBqQV5I_C4w_zWU3vWME3uhcZpJcE5mOj3DjUPC5ZiihO2eFHSEEXUV02kLw3MHkVXLGsuZN4BnPwqz6uL03LFGr35bKTJDaWuRAhF545gNzfvZLf2_M8"/>
+<img alt="Student" class="w-8 h-8 rounded-full border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKgesg-sf7C1vRTfVrMfQn9plQO34e2XkFxAXKNrMg9D-Y1Kw3whzonDM8KVVzrmzNnIDpVa6ilKXcxyBjq3BlJ5T4M-qRDCm2QFZzJw_-aF1JK5JePa3waf9vsji2yNTReBcLVTocxsuACBQd4P6DtdNE8MWApLqjDrAoWMvbdl7Zf61OiZOplhv3ArtuxblxkfFVOiA8YPbInp1aDRfl0aHvDI3NW6YQCY8KnvVXCHdyaYTboacnCKS8xS3jUoLaBjV1omHlTy4"/>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-white flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-outline text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container transition-all">Syllabus</button>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:shadow-lg active:scale-95 transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Course Card Expanded 2 -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all group">
+<div class="p-lg">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-0.5 bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm rounded uppercase tracking-wider">MAT-215</span>
+<span class="flex items-center gap-1 font-label-sm text-label-sm text-outline"><span class="material-symbols-outlined text-[14px]">star</span> 4.5 (89 reviews)</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary group-hover:text-primary-container transition-colors">Discrete Mathematics &amp; Logic</h3>
+</div>
+<div class="text-right">
+<p class="font-headline-sm text-headline-sm text-primary">3 Units</p>
+<p class="font-label-sm text-label-sm text-outline">Semester A</p>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6 leading-relaxed">
+                        Fundamental mathematical concepts for computer science: sets, relations, functions, graph theory, and Boolean algebra. Critical for algorithm design and formal verification.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg">
+<img alt="Professor Sarah" class="w-10 h-10 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb3tGIecpQeH1lb7mD7D06uy5z-s8qsCb15ohTI2ewdRoywmyFKBK9xQeXuCmLtTE8ItRv3dQZIBzTCfgyRHu4aWR_ZchJesT-hUAYz9wrEmoGO6U9_Q00l7SIMscmIFGdqbERlIQt3NR-LxYUNNCNW9Oe1fGRHSJeIW7uiTtmOA1msFVcKAwIYtY6NccNRXLOfABqZAiJHegrjLdAUpZNJ8i8HfPFL_dzlssDrUNw0Hh0c6AOVNolXFsc3HPBuG9slip8RC6ZSOk"/>
+<div>
+<p class="font-label-md text-label-md text-primary">Prof. Sarah Jenkins</p>
+<p class="font-label-sm text-label-sm text-outline">Math Dept Chair</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-surface-container rounded-lg">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary">Science Annex B-12</p>
+<p class="font-label-sm text-label-sm text-outline">Mon/Wed 09:00 - 10:30</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-2 text-error font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                            Only 4 seats left!
+                        </div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border border-outline text-on-surface font-label-md text-label-md rounded-lg hover:bg-surface-container transition-all">Syllabus</button>
+<button class="px-6 py-2 bg-primary text-on-primary font-label-md text-label-md rounded-lg hover:shadow-lg active:scale-95 transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Loading Placeholder -->
+<div class="p-8 border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center text-outline gap-2">
+<span class="material-symbols-outlined animate-spin text-3xl">sync</span>
+<p class="font-label-md text-label-md">Loading more courses...</p>
+</div>
+</section>
+<!-- Right Column: Registration Cart -->
+<aside class="col-span-3 space-y-lg sticky top-24 self-start">
+<div class="bg-primary text-on-primary p-lg rounded-t-xl shadow-lg relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline-sm text-headline-sm mb-1">Registration Cart</h2>
+<p class="font-label-sm text-label-sm opacity-80 uppercase tracking-widest">Fall Semester 2024</p>
+</div>
+<!-- Decorative element -->
+<div class="absolute -right-4 -bottom-4 w-24 h-24 bg-on-primary opacity-10 rounded-full"></div>
+</div>
+<div class="bg-surface-container-lowest border-x border-b border-outline-variant rounded-b-xl shadow-sm p-lg space-y-lg">
+<!-- Cart Items List -->
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="flex gap-4 group">
+<div class="flex-shrink-0 w-12 h-12 bg-secondary-container text-on-secondary-container rounded-lg flex flex-col items-center justify-center">
+<span class="font-bold text-[14px]">CS</span>
+<span class="text-[10px]">101</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-label-md text-label-md text-primary leading-tight">Intro to Algorithms</h4>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<p class="font-label-sm text-label-sm text-outline">4 Units • Dr. Smith</p>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-4 group">
+<div class="flex-shrink-0 w-12 h-12 bg-on-tertiary-container text-tertiary-fixed-dim rounded-lg flex flex-col items-center justify-center">
+<span class="font-bold text-[14px]">DS</span>
+<span class="text-[10px]">204</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h4 class="font-label-md text-label-md text-primary leading-tight">Visual Communication</h4>
+<button class="text-outline hover:text-error transition-colors"><span class="material-symbols-outlined text-[18px]">close</span></button>
+</div>
+<p class="font-label-sm text-label-sm text-outline">3 Units • Prof. Lee</p>
+</div>
+</div>
+</div>
+<hr class="border-outline-variant"/>
+<!-- Totals -->
+<div class="space-y-2">
+<div class="flex justify-between font-label-md text-label-md text-on-surface-variant">
+<span>Total Units</span>
+<span class="text-primary font-bold">7 / 18</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-1000" style="width: 38.8%"></div>
+</div>
+<p class="text-[11px] text-outline text-center">Minimum 12 units required for Full-Time status</p>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-headline-sm text-headline-sm rounded-xl hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+                    Review Registration
+                    <span class="material-symbols-outlined">chevron_right</span>
+</button>
+<div class="p-3 bg-surface-container-low rounded-lg border border-outline-variant flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-tight">
+                        Registration window closes in <strong>4 days, 12 hours</strong>.
+                    </p>
+</div>
+</div>
+<!-- Mini Calendar View -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-sm">
+<h3 class="font-label-md text-label-md text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+                    Draft Schedule
+                </h3>
+<div class="grid grid-cols-5 gap-1 text-center mb-1">
+<span class="font-label-sm text-label-sm text-outline">M</span>
+<span class="font-label-sm text-label-sm text-outline">T</span>
+<span class="font-label-sm text-label-sm text-outline">W</span>
+<span class="font-label-sm text-label-sm text-outline">T</span>
+<span class="font-label-sm text-label-sm text-outline">F</span>
+</div>
+<div class="grid grid-cols-5 gap-1">
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-primary text-on-primary text-[10px] flex items-center justify-center rounded">CS</div>
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-primary text-on-primary text-[10px] flex items-center justify-center rounded">CS</div>
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-on-tertiary-container text-tertiary-fixed-dim text-[10px] flex items-center justify-center rounded">DS</div>
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-on-tertiary-container text-tertiary-fixed-dim text-[10px] flex items-center justify-center rounded">DS</div>
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-surface-container rounded"></div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Success Toast (Hidden by default) -->
+<div class="fixed bottom-10 right-10 bg-inverse-surface text-inverse-on-surface px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 translate-y-24 opacity-0 transition-all duration-300 z-[100]" id="toast">
+<span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span>
+<p class="font-body-md text-body-md">Course added to your registration cart!</p>
+<button class="ml-4 font-label-md text-label-md text-primary-fixed-dim hover:text-white">UNDO</button>
+</div>
+<!-- Mobile Navigation Shell (Suppressed on large desktop, but included for completeness) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface border-t border-outline-variant shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">app_registration</span>
+<span class="font-label-sm text-label-sm">Register</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-3 py-1" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</footer>
+<script>
+        // Micro-interaction for adding to cart
+        const addButtons = document.querySelectorAll('button:contains("Add to Cart"), button');
+        const toast = document.getElementById('toast');
+
+        addButtons.forEach(btn => {
+            if (btn.innerText.includes('Add to Cart')) {
+                btn.addEventListener('click', () => {
+                    toast.classList.remove('translate-y-24', 'opacity-0');
+                    toast.classList.add('translate-y-0', 'opacity-100');
+                    
+                    setTimeout(() => {
+                        toast.classList.add('translate-y-24', 'opacity-0');
+                        toast.classList.remove('translate-y-0', 'opacity-100');
+                    }, 4000);
+                });
+            }
+        });
+
+        // Add to cart visual effect
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', function() {
+                this.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', function() {
+                this.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', function() {
+                this.classList.remove('scale-95');
+            });
+        });
+    </script>
+</body></html>

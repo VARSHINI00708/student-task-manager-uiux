@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow | Academic Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#b6c7eb",
+                        "on-tertiary-fixed-variant": "#5b4217",
+                        "on-tertiary-fixed": "#281900",
+                        "tertiary": "#211400",
+                        "inverse-on-surface": "#f2f0f3",
+                        "primary-container": "#1a2b48",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "secondary": "#505f76",
+                        "on-tertiary-container": "#ad8d5b",
+                        "surface": "#fbf9fb",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e9e7ea",
+                        "on-primary-fixed-variant": "#374765",
+                        "on-primary-container": "#8293b5",
+                        "surface-variant": "#e4e2e5",
+                        "inverse-surface": "#303033",
+                        "surface-container": "#efedf0",
+                        "tertiary-fixed-dim": "#e5c18a",
+                        "surface-dim": "#dbd9dc",
+                        "primary": "#031632",
+                        "background": "#fbf9fb",
+                        "surface-bright": "#fbf9fb",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface": "#1b1b1e",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#081b38",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#3c2700",
+                        "inverse-primary": "#b6c7eb",
+                        "outline-variant": "#c5c6ce",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-surface-variant": "#44474d",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-background": "#1b1b1e",
+                        "on-secondary-fixed": "#0b1c30",
+                        "surface-tint": "#4e5f7e",
+                        "primary-fixed": "#d7e2ff",
+                        "outline": "#75777e",
+                        "on-secondary-container": "#54647a",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d0e1fb",
+                        "surface-container-highest": "#e4e2e5",
+                        "surface-container-low": "#f5f3f6",
+                        "tertiary-fixed": "#ffdead"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "48px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "xl": "32px",
+                        "3xl": "64px",
+                        "2xl": "48px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #E2E8F0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-body-md text-on-surface selection:bg-secondary-container">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="hidden md:flex flex-col w-72 bg-surface-container-lowest border-r border-outline-variant h-full p-lg">
+<div class="mb-3xl">
+<img alt="TaskFlow Logo" class="h-10 w-auto object-contain" src="data:image/png;base64,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"/>
+</div>
+<nav class="flex-1 space-y-sm">
+<!-- Dashboard Active State -->
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container rounded-xl font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-md text-label-md">Courses</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+<span class="font-label-md text-label-md">Registration</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-label-md text-label-md">Attendance</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant">
+<div class="flex items-center gap-md p-sm rounded-xl hover:bg-surface-container-low cursor-pointer transition-colors">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold">
+                        JD
+                    </div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Julian Drake</p>
+<p class="text-[11px] text-outline">Graduate Student</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col min-w-0 bg-background overflow-hidden">
+<!-- Top App Bar -->
+<header class="h-16 flex items-center justify-between px-margin-desktop bg-surface border-b border-outline-variant z-10">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Dashboard</h1>
+<div class="flex items-center gap-lg">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full w-64 text-body-sm focus:ring-2 focus:ring-primary-container transition-all" placeholder="Search tasks, docs..." type="text"/>
+</div>
+<button class="relative p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-margin-desktop">
+<div class="max-w-[1440px] mx-auto grid grid-cols-12 gap-gutter">
+<!-- Center Column (Main Tasks) -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Hero: Next Deadline -->
+<section class="relative overflow-hidden rounded-xl bg-primary-container text-white p-xl shadow-lg group">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
+<span class="material-symbols-outlined text-[200px] -rotate-12 translate-x-12 translate-y-12" data-icon="timer">timer</span>
+</div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-lg">
+<div>
+<span class="inline-block px-3 py-1 bg-white/10 rounded-full font-label-sm text-label-sm mb-md backdrop-blur-md">Next Deadline</span>
+<h2 class="font-display text-display leading-tight mb-xs">Advanced Macroeconomics</h2>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim max-w-md">Mid-term Project: Comparative Analysis of Global Fiscal Policies</p>
+</div>
+<div class="bg-white/5 backdrop-blur-md p-lg rounded-2xl border border-white/10 text-center min-w-[160px]">
+<p class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-wider mb-xs">Due in</p>
+<div class="flex gap-sm justify-center items-baseline">
+<span class="text-4xl font-bold tabular-nums" id="countdown-days">02</span>
+<span class="text-xs text-primary-fixed-dim uppercase">Days</span>
+</div>
+<div class="mt-lg">
+<button class="w-full py-2 bg-white text-primary rounded-lg font-label-md text-label-md hover:bg-primary-fixed-dim transition-colors duration-300">View Details</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Today's Tasks Bento Grid -->
+<section class="space-y-lg">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-sm">
+                                    Today's Tasks
+                                    <span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container text-xs rounded-full font-bold">2 Remaining</span>
+</h3>
+<button class="text-primary hover:underline font-label-md text-label-md">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Task Card: Research Bibliography -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-lg">
+<div class="p-2 bg-surface-container-high rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</div>
+<span class="px-3 py-1 bg-error-container text-on-error-container text-[11px] font-bold rounded-full uppercase tracking-tighter">High Priority</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs group-hover:text-primary transition-colors">Research Bibliography</h4>
+<p class="text-on-surface-variant text-body-sm line-clamp-2 mb-xl">Compile 15 primary sources for the comparative thesis on labor markets in Southeast Asia.</p>
+<div class="flex items-center justify-between pt-md border-t border-outline-variant">
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[10px] font-bold">L</div>
+<div class="w-7 h-7 rounded-full bg-slate-300 border-2 border-white flex items-center justify-center text-[10px] font-bold">K</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-hover:translate-x-1 transition-all" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Task Card: Chapter 4 Exercises -->
+<div class="p-lg bg-white rounded-xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow group cursor-pointer">
+<div class="flex justify-between items-start mb-lg">
+<div class="p-2 bg-surface-container-high rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="functions">functions</span>
+</div>
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[11px] font-bold rounded-full uppercase tracking-tighter">Medium</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-xs group-hover:text-primary transition-colors">Chapter 4 Exercises</h4>
+<p class="text-on-surface-variant text-body-sm line-clamp-2 mb-xl">Complete exercises 12-25 on partial differential equations. Submission via LMS.</p>
+<div class="flex items-center justify-between pt-md border-t border-outline-variant">
+<div class="flex items-center gap-xs text-outline">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+<span class="text-[11px]">Due 5:00 PM</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary group-hover:translate-x-1 transition-all" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Additional Layout: Recent Files (Asymmetric) -->
+<section class="p-xl bg-surface-container-low rounded-2xl border border-outline-variant/50">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Resource Hub</h3>
+<button class="p-2 rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="more_horiz">more_horiz</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-white p-md rounded-lg border border-outline-variant flex items-center gap-md">
+<span class="material-symbols-outlined text-red-600" data-icon="picture_as_pdf">picture_as_pdf</span>
+<div class="min-w-0">
+<p class="font-label-md text-label-md truncate">Syllabus_2024.pdf</p>
+<p class="text-[10px] text-outline">2.4 MB</p>
+</div>
+</div>
+<div class="bg-white p-md rounded-lg border border-outline-variant flex items-center gap-md">
+<span class="material-symbols-outlined text-blue-600" data-icon="description">description</span>
+<div class="min-w-0">
+<p class="font-label-md text-label-md truncate">Thesis_Draft_v2.docx</p>
+<p class="text-[10px] text-outline">842 KB</p>
+</div>
+</div>
+<div class="bg-white p-md rounded-lg border border-outline-variant flex items-center gap-md">
+<span class="material-symbols-outlined text-amber-600" data-icon="data_table">data_table</span>
+<div class="min-w-0">
+<p class="font-label-md text-label-md truncate">Survey_Results.xlsx</p>
+<p class="text-[10px] text-outline">1.1 MB</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar (Overview & Stats) -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- This Week's Overview -->
+<section class="glass-card rounded-xl p-lg flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-lg">This Week's Overview</h3>
+<div class="space-y-lg flex-1">
+<div class="relative pl-6 border-l-2 border-primary-container/20 space-y-lg">
+<!-- Event 1 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-primary-container border-4 border-white shadow-sm"></div>
+<div>
+<p class="text-xs font-bold text-primary uppercase">Tuesday, 14:00</p>
+<h5 class="font-label-md text-label-md text-on-surface">Data Science Seminar</h5>
+<p class="text-xs text-outline">Main Hall, Room 302</p>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-outline border-4 border-white shadow-sm"></div>
+<div>
+<p class="text-xs font-bold text-outline uppercase">Wednesday, 09:30</p>
+<h5 class="font-label-md text-label-md text-on-surface">Math Study Group</h5>
+<p class="text-xs text-outline">Library - Floor 2</p>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-outline border-4 border-white shadow-sm"></div>
+<div>
+<p class="text-xs font-bold text-outline uppercase">Friday, 11:00</p>
+<h5 class="font-label-md text-label-md text-on-surface">Faculty Office Hours</h5>
+<p class="text-xs text-outline">Virtual Meeting</p>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-xl w-full py-2 bg-surface-container-high hover:bg-outline-variant text-on-surface rounded-lg font-label-md text-label-md transition-colors">
+                                Open Calendar
+                            </button>
+</section>
+<!-- Academic Stats -->
+<section class="bg-white border border-outline-variant rounded-xl p-lg shadow-sm">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-lg">Academic Stats</h3>
+<div class="grid grid-cols-2 gap-md">
+<div class="p-md rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-center">
+<p class="text-[10px] text-outline uppercase tracking-widest font-bold mb-xs">GPA</p>
+<p class="text-2xl font-display text-primary">3.92</p>
+<p class="text-[9px] text-green-600 font-bold">+0.12 vs LY</p>
+</div>
+<div class="p-md rounded-xl bg-surface-container-lowest border border-outline-variant/30 text-center">
+<p class="text-[10px] text-outline uppercase tracking-widest font-bold mb-xs">CREDITS</p>
+<p class="text-2xl font-display text-primary">112</p>
+<p class="text-[9px] text-outline font-bold">12 to goal</p>
+</div>
+</div>
+<div class="mt-lg space-y-md">
+<div class="space-y-xs">
+<div class="flex justify-between text-xs font-bold">
+<span>Current Semester Progress</span>
+<span>75%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between text-xs font-bold">
+<span>Task Completion Rate</span>
+<span>92%</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-on-tertiary-container rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Motivational Card (Atmospheric) -->
+<section class="relative h-48 rounded-xl overflow-hidden group">
+<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A serene, minimalist library space with floor-to-ceiling bookshelves and soft, warm sunlight filtering through large windows, creating a peaceful and scholarly atmosphere. The scene is captured in high-definition with a focus on clean lines and a sense of calm productivity. The overall aesthetic is professional, academic, and empowering, aligned with the TaskFlow brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT2TQdfXgh5Afe6yqW5LBtqn1x9TwpkO2ClWbLXDdZnVGPeE7Fetul5h342WWlUVKR8pCor3lwNUn8OHca7ZTNLOrvwWWXhOg4TZwjnUl1fR95E-acYnDrJDFZysGy11PnnUuSYgsfgcpKNEd1XM1XNKzt5EIT-QZcj2p_2NaM0bMmzfIP5WD_2I16iF3qSgDC91WZpBBTtTRaTG1S0qSrdu4gEtquOdzYIWR-s6vQSZPS9UiqDq-2ISmcH7yuCJtFZLzEsw3KvUc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-lg">
+<p class="text-white/80 font-body-sm italic mb-xs">"Success is the sum of small efforts, repeated day in and day out."</p>
+<p class="text-white font-label-sm text-label-sm">— Robert Collier</p>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation (Floating for accessibility) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface border-t border-outline-variant shadow-lg">
+<a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container rounded-xl px-4 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="app_registration">app_registration</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the sidebar
+        document.querySelectorAll('aside nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                document.querySelectorAll('aside nav a').forEach(l => {
+                    l.classList.remove('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                    l.classList.add('text-on-surface-variant', 'hover:bg-surface-container-low');
+                });
+                this.classList.add('bg-primary-container', 'text-on-primary-container', 'font-bold');
+                this.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-low');
+            });
+        });
+
+        // Basic "Live" feel for the dashboard
+        const dateSpan = document.createElement('span');
+        dateSpan.className = 'text-outline font-label-md text-label-md ml-auto hidden lg:block';
+        dateSpan.innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+        document.querySelector('header h1').after(dateSpan);
+    </script>
+</body></html>
